@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('category_id');
+            $table->integer('category_id');
             $table->string('color');
             $table->string('image');
-            $table->string('body');
+            $table->text('body');
             $table->string('tags');
-            $table->string('published')->default(false);
+            $table->boolean('published')->default(false);
             $table->string('published_at');
             $table->timestamps();
         });

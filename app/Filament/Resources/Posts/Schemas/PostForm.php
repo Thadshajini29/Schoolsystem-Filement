@@ -20,7 +20,7 @@ class PostForm
     {
         return $schema
             ->components([
-                TextInput::make('title')->numeric(),
+                TextInput::make('title'),
                 TextInput::make('slug'),
                 Select::make("category_id")
                     ->label("category")
