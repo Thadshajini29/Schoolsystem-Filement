@@ -2,7 +2,12 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 
 class ProductInfolist
 {
@@ -10,7 +15,57 @@ class ProductInfolist
     {
         return $schema
             ->components([
-                //
+                Section::make("Product Information")
+                    ->schema([
+                        TextEntry::make("id")
+                            ->label("Product ID")
+                            ->weight("bold")
+                            ->color("primary"),
+                        TextEntry::make("name")
+                            ->label("Name")
+                            ->weight("bold")
+                            ->color("primary"),
+                        TextEntry::make("sku")
+                            ->label("SKU")
+                            ->weight("bold")
+                            ->badge()
+                            ->color("success"),
+                        TextEntry::make("description")
+                            ->label("Description")
+                            ->weight("bold")
+                            ->color("primary"),
+                            TextEntry::make("created_at")
+                            ->label("Product Creation Date")
+                            ->weight("bold")
+                            ->color("info")
+                            ->date("m/d/Y"),
+                    ])->columnSpanFull(),
+
+                Section::make("Pricing & Stock")
+                    ->schema([
+                        TextEntry::make("price")
+                            ->label("Price")
+                            ->weight("bold")
+                            ->icon(Heroicon::CurrencyDollar)
+                            ->color("primary"),
+                        TextEntry::make("stock")
+                            ->label("Stock")
+                            ->weight("bold")
+                            ->color("primary"),
+                    ])->columnSpanFull(),
+
+                Section::make("Media & Status")
+                    ->schema([
+                        ImageEntry::make("image")
+                            ->label("Product Image")
+                            ->disk("public"),
+                        IconEntry::make("is_active")
+                            ->label("Is Active")
+                            ->boolean(),
+                        IconEntry::make("is_featured")
+                            ->label("Is Featured")
+                            ->boolean(),
+                    ])->columnSpanFull(),
             ]);
     }
 }
