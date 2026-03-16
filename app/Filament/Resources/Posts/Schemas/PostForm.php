@@ -29,11 +29,8 @@ class PostForm
                     ->schema([
                         Group::make()
                             ->schema([
-                                TextInput::make('title')->rules(['required', 'min:3', 'max:25']),   // Validation Rules :-"required|min:3") , Array of Rules:- ['required', 'min:3', 'max:25']
-                                TextInput::make('slug')->unique()
-                                ->validationMessages([
-                                    'unique' => 'Slug Should Be Unique.',
-                                ]),
+                                TextInput::make('title'),
+                                TextInput::make('slug'),
                                 Select::make("category_id")
                                     ->label("category")
                                     ->options(Category::all()->pluck("name", "id")),
@@ -58,4 +55,3 @@ class PostForm
             ])->columns(3);
     }
 }
-    
