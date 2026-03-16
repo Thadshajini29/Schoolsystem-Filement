@@ -6,6 +6,8 @@ use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 
@@ -15,7 +17,10 @@ class ProductInfolist
     {
         return $schema
             ->components([
-                Section::make("Product Information")
+
+                Tabs::make("Tabs")
+                 ->tabs([
+                    Tab::make("Product Info")
                     ->schema([
                         TextEntry::make("id")
                             ->label("Product ID")
@@ -34,14 +39,14 @@ class ProductInfolist
                             ->label("Description")
                             ->weight("bold")
                             ->color("primary"),
-                            TextEntry::make("created_at")
+                        TextEntry::make("created_at")
                             ->label("Product Creation Date")
                             ->weight("bold")
                             ->color("info")
                             ->date("m/d/Y"),
-                    ])->columnSpanFull(),
+                    ]),
 
-                Section::make("Pricing & Stock")
+                Tab::make("Pricing & Stock")
                     ->schema([
                         TextEntry::make("price")
                             ->label("Price")
@@ -52,9 +57,9 @@ class ProductInfolist
                             ->label("Stock")
                             ->weight("bold")
                             ->color("primary"),
-                    ])->columnSpanFull(),
-
-                Section::make("Media & Status")
+                    ])->badge(10)
+                    ->badgeColor("info"),
+                Tab::make("Media & Status")
                     ->schema([
                         ImageEntry::make("image")
                             ->label("Product Image")
@@ -65,7 +70,8 @@ class ProductInfolist
                         IconEntry::make("is_featured")
                             ->label("Is Featured")
                             ->boolean(),
-                    ])->columnSpanFull(),
+                    ])
+                ])->columnSpanFull()->vertical(),
             ]);
     }
 }
