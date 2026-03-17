@@ -18,12 +18,10 @@ class PostsTable
         return $table
             ->columns([
                 ImageColumn::make('image')->disk("public"),
-                TextColumn::make('title'),
-                TextColumn::make('slug'),
+                TextColumn::make('title')->sortable(),
+                TextColumn::make('slug')->sortable(),
                 TextColumn::make('category.name')->label("category"),
                 ColorColumn::make('color'),
-
-
             ])
             ->filters([
                 //

@@ -21,7 +21,7 @@ class ProductsTable
                 TextColumn::make("name"),
                 TextColumn::make("sku"),
                 TextColumn::make("price"),
-                TextColumn::make("stock"),
+                TextColumn::make("stock")->sortable(),
             ])
             ->filters([
                 //
